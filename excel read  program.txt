@@ -1,0 +1,50 @@
+package ss;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+import org.apache.poi.sl.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+public class Writeprogram3 {
+
+	public static void main(String[] args) throws IOException {
+		// TODO Auto-generated method stub
+		FileInputStream sdc= new FileInputStream("C:\\Users\\QA6\\Desktop\\Book.xlsx");
+		XSSFWorkbook wb=new XSSFWorkbook(sdc);
+		XSSFSheet sh=wb.getSheet("sheet1");
+		XSSFRow rw=sh.getRow(4);
+		XSSFCell cel=rw.getCell(1);
+		System.out.println(cel);
+		
+		int rw_1=sh.getLastRowNum();
+		System.out.println("total number of rows" +rw_1);
+			int colomn =sh.getRow(1).getLastCellNum();
+			System.out.println("total number of colomn "+colomn);
+			
+			for(int i=1;i<=rw_1;i++)
+			{
+				int value=(int)sh.getRow(i).getCell(1).getNumericCellValue();
+				System.out.println(value);
+				
+				if(value<35)
+				{
+					sh.getRow(i).createCell(2).setCellValue("pass");
+				}
+				else
+				{
+					sh.getRow(i).createCell(2).setCellValue("fail");
+				
+				}	
+				}
+			FileOutputStream fos=new FileOutputStream("C:\\Users\\QA6\\Desktop\\Book.xlsx");
+			wb.write(fos);
+			wb.close();
+			}}
+			

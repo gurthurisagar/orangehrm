@@ -1,0 +1,32 @@
+package hrm;
+
+import java.util.List;
+
+import org.apache.poi.sl.usermodel.Line;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class webelementsprogram {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub
+				System.setProperty("webdriver.chrome.driver","C:\\apache jar files\\chromedriver.exe");
+				WebDriver bo=new ChromeDriver();
+				bo.manage().window().maximize();
+				bo.get("https://www.flipkart.com/");
+				
+				List<WebElement> el=bo.findElements(By.tagName("a"));
+				System.out.println(el.size());
+				
+				for(int i=0;i<=el.size();i++)
+				{
+					System.out.println(el.get(i).getText());
+				}
+				  
+	}
+
+}

@@ -1,0 +1,45 @@
+package hrm;
+
+import org.apache.commons.math3.ode.events.Action;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class DragandDrop {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+
+		 System.setProperty("webdriver.chrome.driver","C:\\apache jar files\\chromedriver.exe");
+			WebDriver driver=new ChromeDriver();
+			driver.manage().window().maximize();
+			
+			driver.get("https://demoqa.com/droppable/");
+			 Actions obj=new Actions(driver); 
+			 WebElement from=driver.findElement(By.id("draggable"));
+			 WebElement to=driver.findElement(By.id("draggable"));
+			 obj.dragAndDrop(from,to).perform();
+			 
+			 int xOffset1 = from.getLocation().getX();
+				int yOffset1 =  from.getLocation().getY();
+				int xOffset = to.getLocation().getX();			
+				int yOffset =  to.getLocation().getY();		
+		
+				xOffset =(xOffset-xOffset1)+100;
+				yOffset=(yOffset-yOffset1)+100;	
+				Thread.sleep(3000);
+				obj.dragAndDropBy(from, xOffset,yOffset).perform();
+			String textTo=to.getText();
+			if(textTo.equals("Dropped!")){
+				System.out.println("pass:dropped ");
+			
+			}
+			else{
+				System.out.println("fail:dropped");
+			}
+			
+	}
+
+}

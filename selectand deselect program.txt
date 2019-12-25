@@ -1,0 +1,28 @@
+package hrm;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class Selectprogram {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+		System.setProperty("webdriver.chrome.driver","C:\\apache jar files\\chromedriver.exe");
+		WebDriver bo=new ChromeDriver();
+		bo.manage().window().maximize();
+		
+		bo.get("http://toolsqa.com/automation-practice-form");
+		Select obj=new Select(bo.findElement(By.id("selenium_commands")));	
+		obj.selectByVisibleText("WebElement Commands");
+		obj.deselectByIndex(0);
+	Thread.sleep(2000);
+		obj.deselectAll();
+		System.out.println("deselect all commands");
+		
+		
+	}
+
+}

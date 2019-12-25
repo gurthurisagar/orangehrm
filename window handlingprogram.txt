@@ -1,0 +1,66 @@
+package ss;
+
+import java.util.Iterator;
+import java.util.Set;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Windowhandling2 {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+		System.setProperty("webdriver.chrome.driver","C:\\apache jar files\\chromedriver.exe");
+		WebDriver driver=new ChromeDriver();
+		
+		driver.manage().window().maximize();
+		Thread.sleep(3000);
+		driver.get("http://apps.qaplanet.in/hrm/login.php");
+		Thread.sleep(3000);
+		
+	String	windowhandle=driver.getWindowHandle();
+	System.out.println(windowhandle);
+	 driver.findElement(By.xpath("//a[contains(text(),'OrangeHRM')]")).click();
+	 
+	 Set<String> wn=driver.getWindowHandles();
+	 System.out.println(wn);
+	 
+	 
+	 Iterator<String> ss=wn.iterator();
+	 while(ss.hasNext())
+	 {
+		 String childwindow=ss.next();
+		 if(!wn.equals(childwindow))
+		 {                                                                                                                                                                                                                                                                  
+			 driver.switchTo().window(childwindow);
+			 System.out.println(driver.switchTo().window(childwindow).getTitle());
+		System.out.println("navigation to facebook");
+		Thread.sleep(3000);
+		driver.get("https://www.facebook.com/");
+		                                                                                                                                                                                             
+		
+		
+		driver.switchTo().window(childwindow);
+		System.out.println(driver.switchTo().window(childwindow).getTitle());
+		System.out.println("navigation to amazon");
+		
+		Thread.sleep(3000);
+		driver.get("https://www.amazon.in/");
+		
+		driver.switchTo().window(windowhandle);
+		System.out.println(driver.switchTo().window(windowhandle).getTitle());
+		System.out.println("navigation to orange hrm");
+		Thread.sleep(3000);
+		driver.get("http://apps.qaplanet.in/hrm/login.php");
+		 }
+	 }
+	 
+	 
+		driver.switchTo().window( windowhandle);
+		
+		
+
+	}
+
+}

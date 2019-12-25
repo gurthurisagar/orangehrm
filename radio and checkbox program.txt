@@ -1,0 +1,52 @@
+package hrm;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Radiobutton {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+	System.setProperty("webdriver.chrome.driver","C:\\apache jar files\\chromedriver.exe");
+		WebDriver bo=new ChromeDriver();
+		bo.manage().window().maximize();
+		bo.get("http://demo.guru99.com/test/radio.html");
+
+WebElement radio=bo.findElement(By.id("vfb-7-1"));
+radio.click();
+System.out.println("radio button selected");
+
+WebElement radio1=bo.findElement(By.id("vfb-7-2"));
+radio1.click();
+System.out.println("radio1 button selected");
+
+WebElement radio2=bo.findElement(By.id("vfb-7-3"));
+radio2.click();
+System.out.println("radio2 button selected");
+
+//check box
+WebElement radio3=bo.findElement(By.id("vfb-6-0"));
+radio3.click();
+System.out.println("check box selected");
+
+Thread.sleep(2000);
+WebElement radio4=bo.findElement(By.xpath("//input[@id='vfb-6-1']"));
+radio4.click();
+System.out.println("check1 box selected");
+
+Thread.sleep(2000);
+WebElement radio5=bo.findElement(By.id("vfb-6-2"));
+radio5.click();
+System.out.println("check2 box selected");
+
+bo.close();
+
+	
+	
+
+
+	}
+
+}

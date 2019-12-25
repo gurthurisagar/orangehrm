@@ -1,0 +1,53 @@
+package hrm;
+
+import java.util.Iterator;
+import java.util.Set;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class windowhandles2 {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+		System.setProperty("webdriver.chrome.driver","C:\\apache jar files\\chromedriver.exe");
+		WebDriver bo=new ChromeDriver();
+		bo.manage().window().maximize();
+		
+		 String wn=bo.getWindowHandle();
+		 Thread.sleep(3000);
+		 System.out.println("wn + wn");
+		 
+		 bo.get("http://apps.qaplanet.in/hrm/login.php");
+		 Thread.sleep(3000);
+		 bo.findElement(By.xpath("//a[contains(text(),'OrangeHRM')]")).click();
+		
+Set<String> wn1=bo.getWindowHandles();
+Iterator<String> it=wn1.iterator();		
+while(it.hasNext())
+		{
+String childwindow=it.next();			
+if(! wn.equals(childwindow))
+			{
+				
+bo.switchTo().window(childwindow);
+		Thread.sleep(3000);
+		System.out.println("Navigating to youtube.com");
+		Thread.sleep(3000);
+		bo.get("https://www.youtube.com/");
+		
+bo.switchTo().window(childwindow);
+System.out.println("Navigating to amazon.com");    
+Thread.sleep(3000);
+bo.get("https://www.amazon.in/");
+
+bo.switchTo().window(childwindow);
+System.out.println("navigating to gamil.com");
+bo.get("https://accounts.google.com/");
+			}
+		}
+			bo.switchTo().window(wn);
+	}
+
+}

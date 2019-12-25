@@ -1,0 +1,32 @@
+package hrm;
+
+import java.awt.Desktop.Action;
+
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class Pagedownprogram {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+		System.setProperty("webdriver.chrome.driver","C:\\apache jar files\\chromedriver.exe");
+		WebDriver bo=new ChromeDriver();
+		bo.manage().window().maximize();
+		
+      JavascriptExecutor ss = (JavascriptExecutor) bo;
+		bo.get("https://www.toolsqa.com/selenium-webdriver/scroll-element-view-selenium-javascript/");
+	Actions acr=new Actions(bo);
+	acr.sendKeys(Keys.PAGE_DOWN).build().perform();
+	Thread.sleep(2000);
+    ss.executeScript("window.scrollBy(0,6000)");
+	Thread.sleep(2000);
+	System.out.println("page down");
+	
+    acr.sendKeys(Keys.PAGE_UP).build().perform();
+ss.executeScript("window.scrollBy(1,0)");	
+System.out.println("page up");
+	}
+}
